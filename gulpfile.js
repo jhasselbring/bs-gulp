@@ -6,7 +6,10 @@ gulp.task('bs', function() {
     connect.server({}, function (){
         browserSync({
             proxy: '127.0.0.1:8000',
-            port:80
+            port:80,
+            ui:{
+                port:81
+            }
         });
     });
     gulp.watch('**/*.php').on('change', function () {
