@@ -5,11 +5,14 @@ var gulp = require('gulp'),
 gulp.task('bs', function() {
     connect.server({}, function (){
         browserSync({
-            proxy: '127.0.0.1:8000'
+            proxy: '127.0.0.1:8000',
+            port:80
         });
     });
-
     gulp.watch('**/*.php').on('change', function () {
+        browserSync.reload();
+    });
+    gulp.watch('**/*.html').on('change', function () {
         browserSync.reload();
     });
     gulp.watch("css/*.css", ['css']);
@@ -20,7 +23,6 @@ gulp.task('css', function() {
         .pipe(browserSync.stream());
 });
 gulp.task('js', function() {
-    return gulp.src("js/*.js" +
-        "")
+    return gulp.src("js/*.js" + "")
         .pipe(browserSync.stream());
 });
